@@ -6,9 +6,12 @@ import com.atguigu.springcloud.entities.Payment;
 import com.atguigu.springcloud.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @RestController
 @Slf4j
@@ -18,6 +21,26 @@ public class PaymentController {
 
     @Value("${server.port}")
     private String serverPort;
+
+    @Resource   //发现自己的服务信息
+    private DiscoveryClient discoveryClient;
+
+    //服务发现
+    @GetMapping(value = "/payment/discovery")
+    public Object discovery() {
+        //得到全部服务清单
+        List<String> services = discoveryClient.getServices();
+        for (String service : services) {
+            log.info("*********element:" + service);
+        }
+        //获取微服务实例
+        List<ServiceInstance> instances = discoveryClient.getInstances("CLOUD-PAYMENT-SERVICE");
+        for (ServiceInstance instance : instances) {
+            log.info(instance.getServiceId() + "\t" + instance.getHost() + "\t"
+                    + instance.getPort() + "\t" + instance.getUri());
+        }
+        return discoveryClient;
+    }
 
     //只传给前端CommonResult，不需要前端了解其他的组件
     @PostMapping(value = "/payment/create")
