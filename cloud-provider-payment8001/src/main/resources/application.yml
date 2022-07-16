@@ -9,7 +9,8 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/dbCloud?useUnicode=true&serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false
     username: root
-    password: 123456
+    password: '0510'
+#    password: 123456
 
 eureka:
   client:
@@ -19,9 +20,9 @@ eureka:
     fetch-registry: true
     service-url:
       #单机
-      defaultZone: http://eureka7001.com:7001/eureka
+#      defaultZone: http://eureka7001.com:7001/eureka
       #集群
-#      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka #集群版
+      defaultZone: http://eureka7001.com:7001/eureka,http://eureka7002.com:7002/eureka #集群版
 
   instance:
     instance-id: payment8001
@@ -30,9 +31,9 @@ eureka:
     #心跳检测与续约时间
     #开发时设置小些，保证服务关闭后注册中心及时剔除服务
     #Eureka客户端向服务端发送心跳的时间间隔，单位为秒（默认是30秒）
-    lease-renewal-interval-in-seconds: 1
+#    lease-renewal-interval-in-seconds: 1
     #Eureka服务端在收到最后一次心跳后等待时间上限，单位为秒（默认是90秒），超时将剔除服务
-    lease-expiration-duration-in-seconds: 2
+#    lease-expiration-duration-in-seconds: 2
 
 
 mybatis:

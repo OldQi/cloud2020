@@ -10,3 +10,4 @@ public class EurekaMain7001 {
         SpringApplication.run(EurekaMain7001.class,args);
     }
 }
+
