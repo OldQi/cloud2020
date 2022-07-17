@@ -9,8 +9,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/dbCloud?useUnicode=true&serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false
     username: root
-    password: '0510'
-#    password: 123456
+    password: 123456
 
 eureka:
   client:
